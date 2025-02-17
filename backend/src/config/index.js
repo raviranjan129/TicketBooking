@@ -1,7 +1,5 @@
 
-import dotenv from 'dotenv';
-
-dotenv.config(); //it will load env variable file
-
-
-export const PORT=process.env.PORT
+module.exports={
+    ServerConfig:require('./server-config'),
+    Logger:require('./logger-config')
+}
