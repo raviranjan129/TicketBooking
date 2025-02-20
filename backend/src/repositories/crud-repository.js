@@ -1,4 +1,4 @@
-const { where } = require('sequelize');
+
 const {Logger} = require('../config')
 
 class CrudRepository{
