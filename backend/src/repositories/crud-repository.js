@@ -22,6 +22,9 @@ class CrudRepository{
                     id:data
                 }
             });
+            if(!response){
+                throw new AppError('Not able to delete the resource',StatusCodes.NOT_FOUND);
+            }
             return response;
         
     }
@@ -30,7 +33,7 @@ class CrudRepository{
        
             const response=await this.model.findByPk(data); //find by primary key;
             if(!response){
-                throw new AppError('Not able to find the resourse',StatusCodes.NOT_FOUND);
+                throw new AppError('Not able to find the resource',StatusCodes.NOT_FOUND);
             }
             return response;
        
