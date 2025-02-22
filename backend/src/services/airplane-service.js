@@ -61,6 +61,8 @@ async function destroyAirplane(id) {
     
 }
 
+//update the airplane -> patch : /api/v1/airplane
+
 module.exports={
     createAirplane,
     getAirplanes,
