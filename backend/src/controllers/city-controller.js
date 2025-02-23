@@ -2,7 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const { CityService } = require("../services");
 const { SuccessResponse, ErrorResponse } = require("../utils/common");
 
-async function cityController(req,res) {
+async function createCityController(req,res) {
     try {
         const response=await CityService.createCity({
             name:req.body.name
@@ -17,5 +17,5 @@ async function cityController(req,res) {
 
 
  module.exports={
-    cityController,
+    createCityController,
  }

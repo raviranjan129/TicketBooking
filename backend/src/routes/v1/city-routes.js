@@ -1,8 +1,9 @@
 const express=require('express');
-const { cityController } = require('../../controllers/city-controller');
+const { CityController } = require('../../controllers');
+const { CityMiddlewares } = require('../../middlewares');
 
 const router=express.Router();
 
-router.post('/',cityController);
+router.post('/',CityMiddlewares.validateCityRequest, CityController.createCityController);
 
 module.exports=router;
