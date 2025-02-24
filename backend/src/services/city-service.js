@@ -24,7 +24,17 @@ async function createCity(data) {
     }
 }
 
+async function getAllCity(params) {
+    try {
+        const cities=await cityRepository.getAll();
+        return cities;
+    } catch (error) {
+        throw new AppError('Cannot get all cities',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 
 module.exports={
 createCity,
+getAllCity
 }
