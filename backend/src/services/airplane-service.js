@@ -63,9 +63,25 @@ async function destroyAirplane(id) {
 
 //update the airplane -> patch : /api/v1/airplane
 
+async function updateAirplane(id,modelNumber,capacity) {
+    try {
+
+        const airplane=await airplaneRepository.get(id);
+       if(!airplane){
+        throw new AppError('Cannot find the airplane with given id ',StatusCodes.BAD_REQUEST);
+       }
+
+        const response=await airplaneRepository.update(id,{modelNumber,capacity});
+          return response;
+    } catch (error) {
+        throw new AppError('Cannot update the Airplane',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports={
     createAirplane,
     getAirplanes,
     getAirplaneById,
-    destroyAirplane
+    destroyAirplane,
+    updateAirplane,
 }

@@ -60,10 +60,25 @@ async function destroyAirplaneController(req,res) {
     }
 }
 
+async function updateAirplaneController(req, res) {
+    try {
+        const response = await AirplaneService.updateAirplane(
+             req.params.id,
+             req.body.modelNumber,
+             req.body.capacity,
+        );
+        SuccessResponse.data = response;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(error.statusCode).json(ErrorResponse);
+    }
+}
+
 module.exports={
     createAirplane,
     getAirplanes,
     getAirplaneByIdController,
     destroyAirplaneController,
-    
+ updateAirplaneController,
 }
