@@ -33,8 +33,20 @@ async function getAllCity(params) {
     }
 }
 
+async function deleteCity(id) {
+    try {
+        const response=await cityRepository.destroy(id);
+        return response;
+    } catch (error) {
+        if(error.statusCode==StatusCodes.NOT_FOUND){
+            throw new AppError('The City you requested to delete is not present',error.statusCode);
+        }
+        throw new AppError('Cannot delete the requested city',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
 
 module.exports={
 createCity,
-getAllCity
+getAllCity,
+deleteCity,
 }

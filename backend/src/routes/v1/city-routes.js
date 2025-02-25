@@ -6,5 +6,6 @@ const router=express.Router();
 
 router.post('/',CityMiddlewares.validateCityRequest, CityController.createCityController);
 router.get('/',CityController.getAllcityController);
+router.delete('/:id',CityController.deleteCityController);
 
 module.exports=router;
