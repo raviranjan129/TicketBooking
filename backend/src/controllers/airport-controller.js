@@ -2,6 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 
 const { AirportService } = require("../services");
 const { SuccessResponse, ErrorResponse } = require("../utils/common");
+const AppError = require("../utils/errors/app-error");
 
 
 async function createAirportController(req,res) {
@@ -69,10 +70,22 @@ async function  updateAirportController(req,res) {
     
 } 
 
+async function destroyAirportController(req,res) {
+    try {
+      const response=await AirportService.destroyAirport(req.params.id); 
+      SuccessResponse.data=response;
+      return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error=error;
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
+    }
+}
+
 module.exports={
     createAirportController,
     getAirportByIdController,
  getAirport,
- updateAirportController
+ updateAirportController,
+ destroyAirportController,
 
 }

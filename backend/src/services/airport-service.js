@@ -59,10 +59,22 @@ async function  updateAirport(id,name,code,cityId) {
     
 }
 
+async function destroyAirport(id) {
+    try {
+        const response=await airportRepository.destroy(id);
+        return response;
+    } catch (error) {
+        if(error.statusCode==StatusCodes.NOT_FOUND){
+            throw new AppError('The Airport you requested to delete is not present',error.statusCode);
+        }
+        throw new AppError('Cannot delete the requested Airport',StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
 module.exports={
     createAirport,
     getAirportById,
     getAllAirport,
     updateAirport,
+    destroyAirport,
      
 }
