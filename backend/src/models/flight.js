@@ -11,59 +11,55 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Airplane,{
-        foreignKey:'airplaneId'
+      this.belongsTo(models.Airplane, {
+        foreignKey: 'airplaneId',
+        as: 'airplaneDetail'
       });
-      this.belongsTo(models.Airport,{
-        foreignKey:'departureAirportId'
-      })
-
-      this.belongsTo(models.Airport,{
-        foreignKey:'arrivalAirportId'
-      })
-
+      this.belongsTo(models.Airport, {
+        foreignKey: 'departureAirportId',
+        as: 'departureAirport',
+      });
+      this.belongsTo(models.Airport, {
+        foreignKey: 'arrivalAirportId',
+        as: 'arrivalAirport',
+      });
     }
   }
   Flight.init({
     flightNumber: {
-     type: DataTypes.STRING,
-     allowNull:false,
-     
+      type: DataTypes.STRING,
+      allowNull: false
     },
     airplaneId: {
-      type:DataTypes.INTEGER,
-      allowNull:false,
-    
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     departureAirportId: {
-      type:DataTypes.STRING,
-      allowNull:false,
-      
+      type: DataTypes.STRING,
+      allowNull: false
     },
     arrivalAirportId: {
-      type:DataTypes.STRING,
-      allowNull:false,
-     
+      type: DataTypes.STRING,
+      allowNull: false
     },
     arrivalTime: {
-      type:DataTypes.DATE,
-      allowNull:false,
-      
-    },
-    departureTime:{
       type: DataTypes.DATE,
-      allowNull:false,
-      
-
+      allowNull: false
     },
-    price:{
-      type:DataTypes.INTEGER,
+    departureTime: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     boardingGate: {
-      type:DataTypes.STRING,
+      type: DataTypes.STRING
     },
-    totalSeats: {
-      type:DataTypes.INTEGER,
+    totalSeats: { // total remaining seats
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
   }, {
     sequelize,
