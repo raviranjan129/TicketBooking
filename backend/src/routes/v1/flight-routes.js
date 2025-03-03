@@ -8,6 +8,7 @@ const router=express.Router();
 
 
 router.post('/',FlightMiddlewares.validateFlightRequest,FlightController.createFlightController);
-
+//
+router.get('/',FlightController.getAllFlightsController);
 
 module.exports=router;
