@@ -10,5 +10,6 @@ const router=express.Router();
 router.post('/',FlightMiddlewares.validateFlightRequest,FlightController.createFlightController);
 //
 router.get('/',FlightController.getAllFlightsController);
+router.get('/:id',FlightController.getFlightController);
 
 module.exports=router;
