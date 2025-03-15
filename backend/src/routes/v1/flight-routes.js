@@ -11,5 +11,6 @@ router.post('/',FlightMiddlewares.validateFlightRequest,FlightController.createF
 //
 router.get('/',FlightController.getAllFlightsController);
 router.get('/:id',FlightController.getFlightController);
+router.patch('/:id/seats',FlightMiddlewares.validateUpdateSeatsRequest,FlightController.updateSeatsController)
 
 module.exports=router;
